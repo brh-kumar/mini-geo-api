@@ -3,7 +3,7 @@ const path = require('path');
 const Promise = require('bluebird'); 
 
 var { logMapKeys } = require('../settings.json');
-var logFile = path.join(__dirname, '../logs/all-logs.log');
+var logFile = path.join(__dirname, '../log/logs.log');
 var logger = new winston.Logger({
   transports: [
     new winston.transports.File({

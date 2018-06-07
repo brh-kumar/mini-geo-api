@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
 
 var { 
   morganOptions, 
@@ -10,8 +12,13 @@ var {
 } = require('./settings.json');
 var routes = require('./routers/routes');
 var logger = require('./logger/logger');
+var logDir = path.join(__dirname, 'log')
 
 var app = express();
+
+// Checking for log directory
+// if Dir does not exists then create one
+fs.existsSync(logDir) || fs.mkdirSync(logDir)
 
 app.use(bodyParser.json());
 app.use(cors());

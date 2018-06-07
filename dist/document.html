@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>GettingStarted</title>
+  <link rel="stylesheet" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+
+  <div class="container">
+    <h3>Mini GEO API Reference</h3>
+
+    <p>Simple GEO api with logging functionalitites.</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Endpoint</th>
+          <th>Method</th>
+          <th>Example</th>
+          <th>Sample Response</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- 1st Row -->
+        <tr>
+          <td>
+            <i>/api/server/uptime</i>
+          </td>
+          <td>GET</td>
+          <td>
+            <a href='https://brh-mini-geo-api.herokuapp.com/api/server/uptime'> Click Here </a>
+          </td>
+          <td>
+            <pre>
+{
+  "status": "SUCCESS",
+  "message": "Request resolved.",
+  "data": {
+    "uptime": "2431.238 Sec"
+  }
+}
+              </pre>
+          </td>
+          <td>
+            Fetches the server uptime in Seconds.</td>
+        </tr>
+
+        <!-- 2nd Row -->
+        <tr>
+          <td>
+            <i>api/server/logs</i>
+          </td>
+          <td>GET</td>
+          <td>
+            <a href='https://brh-mini-geo-api.herokuapp.com/api/server/logs?from=1528399581091&until=1528403392991&limit=15'>
+              Click Here </a>
+          </td>
+          <td>
+            <pre>
+{
+  "status": "SUCCESS",
+  "message": "Request resolved.",
+  "data": [{
+    "date": "Thu, 07 Jun 2018 20:09:37 GMT",
+    "method": "GET",
+    "url": "/favicon.ico",
+    "responseCode": "304",
+    "responceTime": "0.341 ms"
+  }, {
+    "date": "Thu, 07 Jun 2018 20:09:36 GMT",
+    "method": "GET",
+    "url": "/api/geo/12.903043,77.622921",
+    "responseCode": "304",
+    "responceTime": "241.825 ms"
+  }]
+}
+              </pre>
+          </td>
+          <td>Fetches the server logs between 2 specific timestamps provided in the request.
+            <br />options -
+            <br />&nbsp;&nbsp;&nbsp;from - `[timestamp] default -24hrs` - Start date
+            <br />&nbsp;&nbsp;&nbsp;until - `[timestamp] default now()` - End date
+            <br />&nbsp;&nbsp;&nbsp;limit - `[number] default 10` - How many records should be fetched
+            <br />&nbsp;&nbsp;&nbsp;order - `[string (desc or asc)] default 'desc'` - Defines the sorting order
+            <br />
+          </td>
+        </tr>
+
+        <!-- 3dr Row -->
+        <tr>
+          <td>
+            <i>/api/geo/:latlng</i>
+          </td>
+          <td>GET</td>
+          <td>
+            <a href='https://brh-mini-geo-api.herokuapp.com/api/geo/12.903043,77.622921'> Click Here </a>
+          </td>
+          <td>
+            <pre>
+{
+  "status": "SUCCESS",
+  "message": "Request resolved.",
+  "data": [{
+    "address_components": [{
+      "long_name": "33",
+      "short_name": "33",
+      "types": ["street_number"]
+    },...],
+    "formatted_address": "33 Nim Green, Singapore",
+    ...
+  }, {
+    "address_components": [{
+      "long_name": "Serangoon",
+      "short_name": "Serangoon",
+      "types": ["neighborhood", "political"]
+    }, ...],
+    "formatted_address": "Serangoon, Singapore",
+    ...
+  }]
+}
+              </pre>
+          </td>
+          <td>Fetches the list of address associated with the requested coordinates.
+            <br />By default only 10 requests are allowed in an hour, but this limit can be changed by below API (/api/admin/update).</td>
+        </tr>
+
+        <!-- 4th Row -->
+        <tr>
+          <td>
+            <i>/api/admin/update</i>
+          </td>
+          <td>PUT</td>
+          <td>-</td>
+          <td>
+            <pre>
+@header
+{
+ token: 'AIzaSyASE6fIs9npcWSxYhcYG02WQhG'
+}
+
+@body
+{ 
+  newMaxApiLimit: 15 
+}
+            </pre>
+          </td>
+          <td>Updates the existing `MAX API CALL LIMIT` to new limit.
+            <br />To perform this operation, you have to pass the admin token as `token = 'AIzaSyASE6fIs9npcWSxYhcYG02WQhG'` at
+            the request header and in body `{ newMaxApiLimit: $value }`.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</body>
+
+</html>

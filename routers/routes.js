@@ -62,7 +62,7 @@ Router.get('/geo/:latlng', function (req, res) {
     .then(getGeoData)
     .then(data => { res.json({ ...status['SUCCESS'], data }) })
     .catch(err => {
-      var validErrorStatus = ['NO_RESULT', 'REACHED_MAX_API_CALL'];
+      var validErrorStatus = ['NO_RESULT', 'REACHED_MAX_API_CALL_LIMIT'];
       if (validErrorStatus.indexOf(err.status) !== -1) {
         return res.json(err);
       }
@@ -73,20 +73,19 @@ Router.get('/geo/:latlng', function (req, res) {
 
 Router.put('/admin/update', function (req, res) {
   var token = req.get('token');
-  var { maxApiCall } = req.body;
+  var { newMaxApiLimit } = req.body;
 
-  if (maxApiCall === 0) {
+  if (newMaxApiLimit === 0) {
     return res.json(status['INVALID_MAX_API_CALL']);
   }
   
-  if (!token || !maxApiCall) {
+  if (!token || !newMaxApiLimit) {
     return res.json(status['INVALID_AUTH']);
   }
   
-  // UPDATED_MAX_API_CALL
-  updateApiMaxCall({ token, maxApiCall })
+  updateApiMaxCall({ token, newMaxApiLimit })
     .then(updateSettingsFile)
-    .then(data => { res.json(status['UPDATED_MAX_API_CALL']) })
+    .then(data => { res.json(status['UPDATED_MAX_API_LIMIT']) })
     .catch(err => {
       if (err.status === 'INVALID_AUTH') {
         return res.json(err);

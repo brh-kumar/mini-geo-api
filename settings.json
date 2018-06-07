@@ -15,12 +15,12 @@
       "status": "NO_RESULT",
       "message": "Sorry, No results found!"
     },
-    "REACHED_MAX_API_CALL": {
-      "status": "REACHED_MAX_API_CALL",
+    "REACHED_MAX_API_CALL_LIMIT": {
+      "status": "REACHED_MAX_API_CALL_LIMIT",
       "message": "You have reached max api call of the hour, please try after an hour!"
     },
-    "UPDATED_MAX_API_CALL": {
-      "status": "UPDATED_MAX_API_CALL",
+    "UPDATED_MAX_API_LIMIT": {
+      "status": "UPDATED_MAX_API_LIMIT",
       "message": "Max api call count has been updated successfully"
     },
     "INVALID_MAX_API_CALL": {

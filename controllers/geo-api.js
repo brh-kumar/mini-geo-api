@@ -16,13 +16,13 @@ var checkGeoCall = function () {
     var now = new Date().getTime();
     var lastCallAt = settings.geoApiCalledAt;
     var callCount = settings.geoApiCallCount;
-    var maxCall = settings.geoApiMaxCall;
+    var maxLimit = settings.geoApiMaxLimit;
     var diff = (now - lastCallAt) / 36e5;
 
-    if (diff <= 1 && callCount >= maxCall) {
-      rej(status['REACHED_MAX_API_CALL'])
+    if (diff <= 1 && callCount >= maxLimit) {
+      rej(status['REACHED_MAX_API_CALL_LIMIT'])
     }
-    else if (diff <= 1 && callCount < maxCall) {
+    else if (diff <= 1 && callCount < maxLimit) {
       settings['geoApiCallCount'] = ++callCount;
     }
     else if (diff > 1) {
@@ -39,13 +39,13 @@ var updateApiMaxCall = function (pObj) {
   return new Promise(function (fulf, rej) {
     var settings = require('../geo-api-settings.json');
     var settingsFile = path.join(__dirname, '../geo-api-settings.json');
-    var { token, maxApiCall } = pObj;
+    var { token, newMaxApiLimit } = pObj;
 
     if (token !== adminToken) {
       rej(status['INVALID_AUTH'])
     }
 
-    settings['geoApiMaxCall'] = maxApiCall;
+    settings['geoApiMaxLimit'] = newMaxApiLimit;
     settings = JSON.stringify(settings)
     fulf({ settings, settingsFile });
   });

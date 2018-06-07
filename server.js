@@ -18,11 +18,10 @@ app.use(cors());
 app.use(morgan(morganOptions, { stream: logger.stream }))
 
 app.use('/api', routes);
-
 app.get('/', (req, res) => res.redirect('/api/server/uptime'));
-
 app.use('/*', (req, res) => res.json(status['INVALID_API']));
 
+port = process.env.PORT || port;
 app.listen(port, function (err) {
   if (err) console.log(err);
 

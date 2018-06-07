@@ -1,0 +1,12 @@
+{
+  "name": "Mini GEO API",
+  "description": "A mini geo api",
+  "repository": "https://github.com/brh-kumar/mini-geo-api",
+  "keywords": [
+    "Crash API",
+    "Simple ExpressJs NodeJs example",
+    "ExpressJs",
+    "NodeJs"
+  ],
+  "image": "heroku/nodejs"
+}

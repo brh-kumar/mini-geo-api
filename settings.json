@@ -1,0 +1,56 @@
+{
+  "morganOptions": ":date[web] | :method | :url | :status | :response-time ms",
+  "splitChar": "|",
+  "logMapKeys": [
+    "date",
+    "method",
+    "url",
+    "responseCode",
+    "responceTime"
+  ],
+  "geoApi": "https://maps.googleapis.com/maps/api/geocode/",
+  "geoApiKey": "AIzaSyASE6fIs9WSxYhcYG02WQhG-9xLPqbBlHA",
+  "status": {
+    "NO_RESULT": {
+      "status": "NO_RESULT",
+      "message": "Sorry, No results found!"
+    },
+    "REACHED_MAX_API_CALL": {
+      "status": "REACHED_MAX_API_CALL",
+      "message": "You have reached max api call of the hour, please try after an hour!"
+    },
+    "UPDATED_MAX_API_CALL": {
+      "status": "UPDATED_MAX_API_CALL",
+      "message": "Max api call count has been updated successfully"
+    },
+    "INVALID_MAX_API_CALL": {
+      "status": "INVALID_MAX_API_CALL",
+      "message": "Sorry, Max api call cannot be zero!"
+    },
+    "INVALID_AUTH": {
+      "status": "INVALID_AUTH",
+      "message": "You are not authorized to perform this operation!"
+    },
+    "INVALID_PARAMS": {
+      "status": "INVALID_PARAMS",
+      "message": "Invalid params found!, please validate params before api call."
+    },
+    "SUCCESS": {
+      "status": "SUCCESS",
+      "message": "Request resolved."
+    },
+    "FAIL": {
+      "status": "FAIL",
+      "message": "Sorry, Something went wrong!"
+    },
+    "INVALID_API": {
+      "status": "INVALID_API",
+      "message": "Sorry, No such api exists!"
+    }
+  },
+  "limit": 50,
+  "order": "desc",
+  "start": 0,
+  "port": 8080,
+  "adminToken": "AIzaSyASE6fIs9npcWSxYhcYG02WQhG"
+}
